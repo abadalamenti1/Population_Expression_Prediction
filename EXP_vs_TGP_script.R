@@ -21,3 +21,8 @@ tCHB2 <- tCHB[,1]
 CHBlist <- data.frame(tCHB2)
 colnames(CHBlist)<-c("sample")
 a<-mutate(CHBlist, TGP=CHBlist$sample %in% Genome_All$sample, pop="CHB")
+
+##now want to write out to a text file showing the ones we will need to impute
+b <- a %>% filter(TGP == FALSE)
+setwd("/home/aly/Expression vs TGP")
+write.table(b, file = "CHBimpute.txt", append = FALSE, quote = FALSE, sep = "\t", eol = "\n", na = "NA", dec = ".", row.names = TRUE, col.names = TRUE, qmethod = c("escape", "double"), fileEncoding = "")
