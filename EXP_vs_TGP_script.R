@@ -5,6 +5,8 @@ library(dplyr)
 setwd("/home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/7-HapMap3-pops-exp/E-MTAB-264.processed.1")
 #Change to make population specific
 ##***_p3_expression.txt
+##populations include ("CHB", "GIH", "JPT", "LWK", "MEX", "MKK", "YRI")
+##will need to cross reference with TGP
 CHB_EXP <- read.table("CHB_p3_expression.txt", sep = "\t")
 
 
