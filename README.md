@@ -1,7 +1,5 @@
 #Predicting Gene Regulation in Diverse Global Populations
 
-######By Alexa Badalamenti, Jeffrey Ng, Virginia Saulnier, Shyam Shah, and Dr. Heather E. Wheeler
-
 **Introduction**
 
   Most studies focus on populations of European ancestry. While genomic research has broadened knowledge on human genetics, work is needed to expand this knowledge to more diverse groups, otherwise an entire breadth of useful information is missing.
