@@ -10,7 +10,7 @@ relationships_w_parent <- dplyr::filter(relationships, dad != 0 | mom != 0)
 relationships_w_parent_1 <- dplyr::filter(relationships_w_parent, population == "CHB" | population == "GIH" | population =="JPT" | population =="LWK" | population =="MEX" | population =="MKK" | population =="YRI")
 
 #shorten table to only include FID and IID columns
-exclude <- dplyr::select(relionships_w_parent_1, FID, IID)
+exclude <- dplyr::select(relationships_w_parent_1, FID, IID)
 
 #write out to list
 setwd("/home/aly/Populations/")
