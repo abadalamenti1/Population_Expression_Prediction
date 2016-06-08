@@ -25,5 +25,7 @@ L <- data.frame(List)
 ##separate to make a list of those that have been sequenced
 final <- L[L$IID %in% new.variable, ]
 
-##write out to new text file containing both the FID and IID for those samples that were not sequenced via TGP
+##write out to new text file containing both the FID and IID for those samples that were sequenced via TGP
 write.table(final, file = "CHB_Sequenced.txt", append = FALSE, quote = FALSE, sep = "\t", eol = "\n", na = "NA", dec = ".", row.names = FALSE, col.names = FALSE, qmethod = c("escape", "double"), fileEncoding = "")
+
+##this file then used in plink command with --remove flag
