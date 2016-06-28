@@ -41,7 +41,9 @@ write.table(factors, '/home/aly/PEER Plots/CHB_factors.sexcov.10.txt',quote=F)
 weights = PEER_getW(model)
 precision = PEER_getAlpha(model)
 residuals = PEER_getResiduals(model)
-write.table(residuals, '/home/aly/PEER Plots/CHBResiduals.sexcov.10.txt')
+row.names(residuals) <- rownames(expmat)
+colnames(residuals) <- exp$`Normalization REF`
+write.table(residuals, '/home/aly/PEER Plots/CHBResiduals.sexcov.10.txt', quote = FALSE)
 plot(precision) #save plot
 PEER_plotModel(model) #save plot
 pdf(file="/home/aly/PEER Plots/CHB.sexcov.plot.10.pdf")
