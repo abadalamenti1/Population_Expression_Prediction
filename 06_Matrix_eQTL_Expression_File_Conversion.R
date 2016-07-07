@@ -34,3 +34,31 @@ genedf = dplyr::select(genedf, -ILMN_ID)
 
 write.table(genedf, '/home/aly/Matrix_eQTL/Expression/CHB_Expression.txt', quote = FALSE)
 ##Then physically add in id to text file using nano
+
+#2) Gene Location File
+##geneid	chr	s1	s2
+##Gene_01	chr1	721289	731289
+##Gene_02	chr1	752565	762565
+
+#use genedf generated from Step 1
+#ILMN_ID V6 of ILMN generated above
+#Chr number V5 of ILMN generated above
+#Gene location V3 and V4 of ILMN generated above
+
+loc = dplyr::select(ILMN, V6, V5, V3, V4)
+colnames(loc) <- c("ILMN_ID", "chr", "s1", "s2")
+genedf = dplyr::inner_join(res, pulled, by = "ILMN_ID")
+genedf = dplyr::select(genedf, -GeneID)
+genedf = dplyr::distinct(genedf)
+row.names(genedf) <- genedf$ILMN_ID
+
+geneloc = dplyr::inner_join(loc, genedf, by = "ILMN_ID")
+geneloc = dplyr::distinct(geneloc)
+a = duplicated(geneloc$ILMN_ID)
+newgeneloc = dplyr::filter(geneloc, duplicated(geneloc$ILMN_ID)==FALSE)
+newgeneloc = dplyr::select(newgeneloc, ILMN_ID, chr, s1, s2)
+rownames(newgeneloc) <- newgeneloc$ILMN_ID
+newgeneloc = dplyr::select(newgeneloc, -ILMN_ID)
+
+write.table(newgeneloc, '/home/aly/Matrix_eQTL/Expression/CHB_Location.txt', quote = FALSE)
+##Then physically add in geneid to text file using nano
