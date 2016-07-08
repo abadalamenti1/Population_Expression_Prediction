@@ -18,6 +18,8 @@ ref = dplyr::mutate(q, ILMN_ID = ILMN$V6)
 
 #read in Residuals for population with sex covariate
 r = read.table("/home/aly/Matrix_eQTL/Expression/CHBResiduals.txt", header = TRUE, sep = " ")
+rownames(r) <- r$id
+r = dplyr::select(r, -id)
 residuals = t(r)
 
 v = rownames(residuals)
