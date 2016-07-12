@@ -62,12 +62,3 @@ for line in impdatalines:
 
 outsnps.close()
 outloc.close()
-
-
-
-
-
-
-
-
-
