@@ -17,9 +17,9 @@ q = as.data.frame(q)
 ref = dplyr::mutate(q, ILMN_ID = ILMN$V6)
 
 #read in Residuals for population with sex covariate
-r = read.table("/home/aly/Matrix_eQTL/Expression/CHBResiduals.txt", header = TRUE, sep = " ")
-rownames(r) <- r$id
-r = dplyr::select(r, -id)
+r = read.table("/home/aly/Matrix_eQTL/Expression/YRIResiduals.txt", header = TRUE, sep = " ")
+rownames(r) <- r$ID
+r = dplyr::select(r, -ID)
 residuals = t(r)
 
 v = rownames(residuals)
@@ -34,7 +34,7 @@ genedf = dplyr::distinct(genedf)
 row.names(genedf) <- genedf$ILMN_ID
 genedf = dplyr::select(genedf, -ILMN_ID)
 
-write.table(genedf, '/home/aly/Matrix_eQTL/Expression/CHB_Expression.txt', quote = FALSE)
+write.table(genedf, '/home/aly/Matrix_eQTL/Expression/YRI_Expression.txt', quote = FALSE, sep = "\t")
 ##Then physically add in id to text file using nano
 
 #2) Gene Location File
@@ -62,5 +62,5 @@ newgeneloc = dplyr::select(newgeneloc, ILMN_ID, chr, s1, s2)
 rownames(newgeneloc) <- newgeneloc$ILMN_ID
 newgeneloc = dplyr::select(newgeneloc, -ILMN_ID)
 
-write.table(newgeneloc, '/home/aly/Matrix_eQTL/Expression/CHB_Location.txt', quote = FALSE)
+write.table(newgeneloc, '/home/aly/Matrix_eQTL/Gene_Location/YRI_Location.txt', quote = FALSE, sep = "\t")
 ##Then physically add in geneid to text file using nano
