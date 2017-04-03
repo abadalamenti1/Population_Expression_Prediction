@@ -1,4 +1,4 @@
-load("~/POPALL.RData")
+load("~/POPALL0.5.RData")
 
 #Find R
 YRIALL <- dplyr::mutate(YRIALL, R = sqrt(R2))
@@ -16,6 +16,8 @@ YRIALLR <- dplyr::mutate(YRIALLR, R = sqrt(R2))
 
 POP_R <-dplyr::select(YRIALLR, POP, R)
 POP_R <-dplyr::filter(POP_R, !is.na(R))
+#can comment out if you want to include the predictive population
+POP_R <-dplyr::filter(POP_R, POP!='YRI')
 
 #Plot predictive model
 ggplot(POP_R, aes(R, colour = POP)) + geom_density() + xlim(-1, 1)
