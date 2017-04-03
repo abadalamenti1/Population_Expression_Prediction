@@ -2,6 +2,7 @@ load("~/POPALL0.5.RData")
 
 #Find R
 YRIALL <- dplyr::mutate(YRIALL, R = sqrt(R2))
+#can edit value (0.1-0.9)
 YRIR <- dplyr::filter(YRIALL, R>0.1)
 genelist <-c(YRIR$gene)
 
