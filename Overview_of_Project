@@ -17,10 +17,13 @@ POP represents any of the 7 HapMap3 Populations used.
                 NA19035 NA19035
                 NA19036 NA19036
                 etc.
-2) Run LiftOver
-    a) Update the ".bed file" using R so it is in the proper format.
+2) Use LiftOver to update reference build from hg18 to hg19.
+    a) Update the ".bed file" using R so it is in the proper format for use in LiftOver.
         This file is not the actual .bed file, but is made. Use 01_update_bed_file_liftover.R script in the Population_Expression_Prediction respository.
             Example Output File:    chr1    743267  743268  rs3115860
                                     chr1    766408  766409  rs12124819
                                     chr1    773885  773886  rs17160939
-
+        Output file will be POP_liftOver.bed using script.
+    b) Run LiftOver
+        liftOver POP_liftOver.bed hg18ToHg19.over.chain.gz output.bed unlifted.bed
+ 3) Update the HapMap3 Genotype Data files (.bed, .bim, .fam) so they are population specific.
