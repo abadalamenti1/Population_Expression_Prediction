@@ -10,6 +10,7 @@ POP represents any of the 7 HapMap3 Populations used.
   c) Make a POP.list of the population's samples.
     Use head POP_p3_expression.txt to copy the list of the population samples
     Make the POP.list using nano by copying these samples into two identical columns
+    ***Honestly could probably write an easy script for this, but it didn't take me too long to do by hand. ¯\_(ツ)_/¯
       Example:  NA19027 NA19027
                 NA19028 NA19028
                 NA19031 NA19031
