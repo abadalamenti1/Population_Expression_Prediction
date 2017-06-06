@@ -17,7 +17,8 @@ POP represents any of the 7 HapMap3 Populations used.
                 NA19036 NA19036
                 etc.
 2) Run LiftOver
-    a) Update the .bed file using R so it is in the proper format.
+    a) Update the ".bed file" using R so it is in the proper format.
+        This file is not the actual .bed file, but is made. Use 01_update_bed_file_liftover.R script in the Population_Expression_Prediction respository.
         Example:    chr1    743267  743268  rs3115860
                     chr1    766408  766409  rs12124819
                     chr1    773885  773886  rs17160939
