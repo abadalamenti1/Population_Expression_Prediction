@@ -7,7 +7,7 @@ POP represents any of the 7 HapMap3 Populations used.
     /home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/HapMap3-genotypes/hapmap3_r2_b36_fwd.consensus.qc.poly.fam
   b) Copy Stranger Gene Expression Data into own directory.
     /home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/7-HapMap3-pops-exp/E-MTAB-264.processed.1/POP_p3.expression
-  c) Make a POP.list of the population's samples
+  c) Make a POP.list of the population's samples.
     Use head POP_p3_expression.txt to copy the list of the population samples
     Make the POP.list using nano by copying these samples into two identical columns
       Example:  NA19027 NA19027
@@ -16,4 +16,8 @@ POP represents any of the 7 HapMap3 Populations used.
                 NA19035 NA19035
                 NA19036 NA19036
                 etc.
-1
+2) Run LiftOver
+    a) Update the .bed file using R so it is in the proper format.
+        Example:    chr1    743267  743268  rs3115860
+                    chr1    766408  766409  rs12124819
+                    chr1    773885  773886  rs17160939
