@@ -25,5 +25,7 @@ POP represents any of the 7 HapMap3 Populations used.
                                     chr1    773885  773886  rs17160939
         Output file will be POP_liftOver.bed using script.
     b) Run LiftOver
+        First need to download and save the hg18ToHg19.over.chain file to your directory. Also make sure it is gzipped.
+            From (http://hgdownload.cse.ucsc.edu/goldenPath/hg18/liftOver/hg18ToHg19.over.chain.gz)
         liftOver POP_liftOver.bed hg18ToHg19.over.chain.gz output.bed unlifted.bed
  3) Update the HapMap3 Genotype Data files (.bed, .bim, .fam) so they are population specific.
