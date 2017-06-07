@@ -1,4 +1,5 @@
 * *These notes were formed in re-running both LWK and MKK.* *
+
 **POP** * *represents any of the 7 HapMap3 Populations used.* *
 
 1) a) Copy the HapMap3 Genotype Data into own directory.
