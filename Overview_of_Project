@@ -2,7 +2,7 @@ These notes were formed in re-running both LWK and MKK.
 POP represents any of the 7 HapMap3 Populations used.
 
 1) a) Copy the HapMap3 Genotype Data into own directory.
-    /home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/HapMap3-genotypes/hapmap3_r2_b36_fwd.consensus.qc.poly.bed
+    `/home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/HapMap3-genotypes/hapmap3_r2_b36_fwd.consensus.qc.poly.bed`
     /home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/HapMap3-genotypes/hapmap3_r2_b36_fwd.consensus.qc.poly.bim
     /home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/HapMap3-genotypes/hapmap3_r2_b36_fwd.consensus.qc.poly.fam
   b) Copy Stranger Gene Expression Data into own directory.
