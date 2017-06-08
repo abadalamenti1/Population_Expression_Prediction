@@ -2,23 +2,30 @@
 #POP represents any of the 7 HapMap3 Populations used.
 
 1) a) Copy the HapMap3 Genotype Data into own directory.
-    /home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/HapMap3-genotypes/hapmap3_r2_b36_fwd.consensus.qc.poly.bed
-    /home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/HapMap3-genotypes/hapmap3_r2_b36_fwd.consensus.qc.poly.bim
-    /home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/HapMap3-genotypes/hapmap3_r2_b36_fwd.consensus.qc.poly.fam
+    '/home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/HapMap3-genotypes/hapmap3_r2_b36_fwd.consensus.qc.poly.bed'
+    '/home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/HapMap3-genotypes/hapmap3_r2_b36_fwd.consensus.qc.poly.bim'
+    '/home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/HapMap3-genotypes/hapmap3_r2_b36_fwd.consensus.qc.poly.fam'
     
   b) Copy Stranger Gene Expression Data into own directory.
-    /home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/7-HapMap3-pops-exp/E-MTAB-264.processed.1/POP_p3.expression
+    '/home/wheelerlab1/Data/Stranger_et_al_pop_eQTLs/7-HapMap3-pops-exp/E-MTAB-264.processed.1/POP_p3.expression'
     
-  ##########c) Make a POP.list of the population's samples.
-    ##########Use 'head POP_p3_expression.txt' to copy the list of the population samples.
-   ##########Make the POP.txt using nano by copying these samples into the file, and seperating them by line.
-      ##########Example:  NA19027
-                ##########NA19028
-                ##########NA19031
-                ##########NA19035
-                ##########NA19036
-                ##########etc.
-##########***Honestly could probably write an easy script for this, but it didn't take me too long to do by hand. ¯\_(ツ)_/¯***
+  c) Make a POP.list of the population's samples.
+    Use 'head POP_p3_expression.txt' to copy the list of the population samples.
+    Make the POP.txt using nano by copying these samples into the file, and seperating them by line.
+        Example:  NA19027
+                  NA19028
+                  NA19031
+                  NA19035
+                  NA19036
+                  etc.
+    In R:
+        'library(dplyr)
+         Poplist <- read.table('POP.txt')
+         Poplist <- dplyr::mutate(Poplist, V2 = V1)
+         fam <- read.table('hapmap3_r2_b36_fwd.consensus.qc.poly.fam')
+         combined <- dplyr::left_join(Poplist, fam, by = 'V2')
+         newlist <- dplyr::select(combined, V1.y, V2)
+         write.table(newlist, file='POP.list', quote = F, row.names = F, col.names = F)'
 
 2) Use liftOver to update reference build from hg18 to hg19.
     a) Create the ".bed file" using R so it is in the proper format for use in liftOver.
