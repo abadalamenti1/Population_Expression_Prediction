@@ -78,3 +78,9 @@
 
 6) GWAS QC
     Use 'GWAS_QC/Scripts-from-Wheeler/plink_QC.sh'. Modify lines of code as needed from her original script. --bfiles are 'POP_Removed_Unlifted_New_Position_Removed_Sequenced'
+
+7) Generate frequency file and run the pre-imputation check.
+    a) Use plink to generate frequency file 'POP.frq'.
+        'plink --bfile POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01 --keep POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01.fam --freq --out POP'
+    
+    b) HRC script.
