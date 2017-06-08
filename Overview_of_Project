@@ -70,4 +70,5 @@
         Output files are 'POPfound.txt', or samples that were sequenced, and 'POPimpute.txt', or samples that need to be imputed.
         ***No samples from MKK were sequenced and all had to be imputed. This is the only population that had to be entirely imputed.
         
-    c) Use 4
+    b) Use '04_Create_FID-IID_List_of_Sequenced_Samples.R' to create a list of those that were sequenced organized by FID and IID.
+        Output file is 'POP_Sequenced.txt'.
