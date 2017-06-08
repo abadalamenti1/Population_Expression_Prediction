@@ -77,4 +77,4 @@
         'plink --bfile POP_Removed_Unlifted_New_Position --remove POP_Sequenced.txt --make-bed --out POP_Removed_Unlifted_New_Position_Removed_Sequenced'
 
 6) GWAS QC
-    Use 'GWAS_QC/Scripts-from-Wheeler'. Modify lines of code as needed.
+    Use 'GWAS_QC/Scripts-from-Wheeler/plink_QC.sh'. Modify lines of code as needed.
