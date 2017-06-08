@@ -21,10 +21,15 @@
         ***It may be useful to note how many lines are in this file, as it shows the number of people we have expression data for.
     In R:
         'library(dplyr)
-         Poplist <- read.table('POP.txt')
+         Poplist <- read.table('MKK.txt')
          Poplist <- dplyr::mutate(Poplist, V2 = V1)
          fam <- read.table('hapmap3_r2_b36_fwd.consensus.qc.poly.fam')
-         combined <- dplyr::left_join(Poplist, fam, by = 'V2')
+         
+         #these lines remove those with parents
+         fam1 <- dplyr::filter(fam, V3 == 0)
+         fam1 <- dplyr::filter(fam1, V4 == 0)
+         
+         combined <- dplyr::left_join(Poplist, fam1, by = 'V2')
          newlist <- dplyr::select(combined, V1.y, V2)
          write.table(newlist, file='POP.list', quote = F, row.names = F, col.names = F)'
     
