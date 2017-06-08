@@ -57,3 +57,5 @@
             Now have POP_Removed_Unlifted.bed, POP_Removed_Unlifted.bim, POP_Removed_Unlifted.fam.
         
         c) Use '0300_Update_Position.R' to update POP_Removed_Unlifted.bim with the new positions from liftOver.
+            Output from this script is 'POP_Removed_Unlifted_New_Position.bim'.
+            It is helpful to then re-name 'POP_Removed_Unlifted.bed', and 'POP_Removed_Unlifted.fam' to 'POP_Removed_Unlifted_New_Position' as well.
