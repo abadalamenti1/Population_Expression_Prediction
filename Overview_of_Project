@@ -45,8 +45,12 @@
             This page is helpful if you have questions: (http://genome.sph.umich.edu/wiki/LiftOver)
         
  3) Update the HapMap3 Genotype Data files (.bed, .bim, .fam) so they are population specific.
-        Use 'POP.list' with --keep tag, as those are the samples we have expression data for.
+        Use Plink, and 'POP.list' with --keep tag, as those are the samples we have expression data for.
         'plink --bfile hapmap_r2_b36_fwd.consensus.qc.poly --keep POP.list --make-bed --out POP_hapmap_r2_b36_fwd.consensus.qc.poly'
         ***Again, note how many people pass filters and QC. It may not be the same number as the people in 'POP.list'.
  
  4) Update .bim file to remove unlifted SNPs after liftOver.
+        a) Use '0200_List_of_Unlifted.R' to create a list of unlifted SNPs, 'Unlifted_SNPs.txt'.
+        
+        b) Use Plink
+            'plink
