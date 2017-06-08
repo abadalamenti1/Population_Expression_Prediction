@@ -56,4 +56,4 @@
             'plink --bfile POP_hapmap3_r2_b36_fwd.consensus.qc.poly --exclude Unlifted_SNPs.txt --make-bed --out POP_Removed_Unlifted'
             Now have POP_Removed_Unlifted.bed, POP_Removed_Unlifted.bim, POP_Removed_Unlifted.fam.
         
-        c) R script
+        c) Use '0300_Update_Position.R' to update POP_Removed_Unlifted.bim with the new positions from liftOver.
