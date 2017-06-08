@@ -60,7 +60,10 @@
             Output from this script is 'POP_Removed_Unlifted_New_Position.bim'.
             It is helpful to then re-name 'POP_Removed_Unlifted.bed', and 'POP_Removed_Unlifted.fam' to 'POP_Removed_Unlifted_New_Position' as well.
 
-5) Update the expression file and remove kids and make sure everyone is sequenced via 1000 Genomes Project.
-    a) Use 1
+5) Update the expression file, remove kids, and figure out which samples were sequenced via 1000 Genomes Project.
+    a) Use '01_EXP_vs_TGP_script.R' to figure out which samples have been sequenced through TGP and which need to be imputed.
+        Output files are 'POPfound.txt', or samples that were sequenced, and 'POPimpute.txt', or samples that need to be imputed.
+        ***No samples from MKK were sequenced and all had to be imputed. This is the only population that had to be entirely imputed.
+        
     b) Use 2
     c) Use 4
