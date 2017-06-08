@@ -65,10 +65,16 @@
             Output from this script is 'POP_Removed_Unlifted_New_Position.bim'.
             It is helpful to then re-name 'POP_Removed_Unlifted.bed', and 'POP_Removed_Unlifted.fam' to 'POP_Removed_Unlifted_New_Position' as well.
 
-5) Figure out which samples were sequenced via 1000 Genomes Project.
+5) Figure out which samples were sequenced via 1000 Genomes Project and remove them.
     a) Use '01_EXP_vs_TGP_script.R' to figure out which samples have been sequenced through TGP and which need to be imputed.
         Output files are 'POPfound.txt', or samples that were sequenced, and 'POPimpute.txt', or samples that need to be imputed.
         ***No samples from MKK were sequenced and all had to be imputed. This is the only population that had to be entirely imputed.
         
     b) Use '04_Create_FID-IID_List_of_Sequenced_Samples.R' to create a list of those that were sequenced organized by FID and IID.
         Output file is 'POP_Sequenced.txt'.
+    
+    c) Remove list of sequenced samples using Plink.
+        'plink --bfile POP_Removed_Unlifted_New_Position --remove POP_Sequenced.txt --make-bed --out POP_Removed_Unlifted_New_Position_Removed_Sequenced'
+
+6) GWAS QC
+    Use " Modify lines of code as needed.
