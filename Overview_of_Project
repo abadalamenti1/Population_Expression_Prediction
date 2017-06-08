@@ -65,5 +65,4 @@
         Output files are 'POPfound.txt', or samples that were sequenced, and 'POPimpute.txt', or samples that need to be imputed.
         ***No samples from MKK were sequenced and all had to be imputed. This is the only population that had to be entirely imputed.
         
-    b) Use 2
     c) Use 4
