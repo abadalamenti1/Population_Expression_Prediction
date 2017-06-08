@@ -23,9 +23,6 @@ plink --bfile N88_Recluster_TOP_20150911_FinalReport.geno0.01 --indep-pairwise 5
 #5. Relationship check
 plink --bfile N88_Recluster_TOP_20150911_FinalReport.geno0.01 --extract N88_Recluster_TOP_20150911_FinalReport.geno0.01.prune.in --genome --min 0.125 --out N88_Recluster_TOP_20150911_FinalReport.geno0.01.LD0.3
 ### checked for expected duplicates and known hapmap relationships and found 8 pairs of unexpected duplicates in 03_GWAS_QC_plots.Rmd, made list of one of a known duplicate pair, hapmap samples, and all 16 unexpected duplicates. Rerun relationship check with these excluded.
-plink --bfile N88_Recluster_TOP_20150911_FinalReport.geno0.01 --extract N88_Recluster_TOP_20150911_FinalReport.geno0.01.prune.in --remove hapmapDuplicateList.txt --genome --min 0.125 --out N88_Recluster_TOP_20150911_FinalReport.geno0.01.LD0.3.rmKnownDupsHapmap 
-### remove one of pair w/pi-hat > 0.05 (keep sample with audiometry if possible), run full IBD analysis:
-plink --bfile N88_Recluster_TOP_20150911_FinalReport.geno0.01 --extract N88_Recluster_TOP_20150911_FinalReport.geno0.01.prune.in --remove hapmapDuplicate_pihat0.05_exclusion_list.txt --genome --out N88_Recluster_TOP_20150911_FinalReport.geno0.01.LD0.3.rmKnownDupsHapmap.rmPIHAT0.05
 
 #5. Check heterozygosity (across all autosomal SNPs) -- look at that distribution across individuals to check for and rm outliers (F: mean +/-3 sd), see 03_GWAS_QC_plots.Rmd.
 plink --bfile N88_Recluster_TOP_20150911_FinalReport.geno0.01 --het --extract N88_Recluster_TOP_20150911_FinalReport.geno0.01.prune.in --remove hapmapDuplicate_pihat0.05_exclusion_list.txt --out N88_Recluster_TOP_20150911_FinalReport.geno0.01.LD0.3.rmKnownDupsHapmap.rmPIHAT0.05
