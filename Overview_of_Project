@@ -51,7 +51,7 @@
         
  3) Update the HapMap3 Genotype Data files (.bed, .bim, .fam) so they are population specific.
         Use Plink, and 'POP.list' with --keep tag, as those are the samples we have expression data for.
-        'plink --bfile hapmap_r2_b36_fwd.consensus.qc.poly --keep POP.list --make-bed --out POP_hapmap3_r2_b36_fwd.consensus.qc.poly'
+        'plink --bfile hapmap3_r2_b36_fwd.consensus.qc.poly --keep POP.list --make-bed --out POP_hapmap3_r2_b36_fwd.consensus.qc.poly'
         ***Again, note how many people pass filters and QC. It may not be the same number as the people in 'POP.list'.
  
  4) Update .bim file to remove unlifted SNPs and update positions after liftOver.
@@ -65,7 +65,7 @@
             Output from this script is 'POP_Removed_Unlifted_New_Position.bim'.
             It is helpful to then re-name 'POP_Removed_Unlifted.bed', and 'POP_Removed_Unlifted.fam' to 'POP_Removed_Unlifted_New_Position' as well.
 
-5) Update the expression file, remove kids, and figure out which samples were sequenced via 1000 Genomes Project.
+5) Figure out which samples were sequenced via 1000 Genomes Project.
     a) Use '01_EXP_vs_TGP_script.R' to figure out which samples have been sequenced through TGP and which need to be imputed.
         Output files are 'POPfound.txt', or samples that were sequenced, and 'POPimpute.txt', or samples that need to be imputed.
         ***No samples from MKK were sequenced and all had to be imputed. This is the only population that had to be entirely imputed.
