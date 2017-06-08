@@ -18,6 +18,7 @@
                   NA19035
                   NA19036
                   etc.
+        ***It may be useful to note how many lines are in this file, as it shows the number of people we have expression data for.
     In R:
         'library(dplyr)
          Poplist <- read.table('POP.txt')
@@ -45,4 +46,7 @@
         
  3) Update the HapMap3 Genotype Data files (.bed, .bim, .fam) so they are population specific.
         Use 'POP.list' with --keep tag, as those are the samples we have expression data for.
-        'plink --bfile hapmap_r2_b36_fwd.consensus.qc.poly --keep POP.list --make-bed
+        'plink --bfile hapmap_r2_b36_fwd.consensus.qc.poly --keep POP.list --make-bed --out POP_hapmap_r2_b36_fwd.consensus.qc.poly'
+        ***Again, note how many people pass filters and QC. It may not be the same number as the people in 'POP.list'.
+ 
+ 4) Update .bim file to remove unlifted SNPs after liftOver.
