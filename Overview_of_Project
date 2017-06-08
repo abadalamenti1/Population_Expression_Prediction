@@ -32,7 +32,7 @@
 2) Use liftOver to update reference build from hg18 to hg19.
     a) Create the ".bed file" using R so it is in the proper format for use in liftOver.
         This file is not the actual 'hapmap3_r2_b36_fwd.consensus.qc.poly.bed' file, but is made. 
-        Use my '01_update_bed_file_liftover.R' script in my Population_Expression_Prediction respository.
+        Use my '0100_update_bed_file_liftover.R' script in my Population_Expression_Prediction respository.
             Example Output File:    chr1    743267  743268  rs3115860
                                     chr1    766408  766409  rs12124819
                                     chr1    773885  773886  rs17160939
