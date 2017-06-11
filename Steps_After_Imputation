@@ -22,5 +22,5 @@
       POP_filtered_chr1.recode.vcf
      
 5) Run PEER. Can either do full script to generate plots for comparison, or simply generate the residuals file, which is needed for generating the MatrixeQTL files.
-  Use 
+  Use '05_PEER_Plots_With_Sex_Covariate.R'
     
