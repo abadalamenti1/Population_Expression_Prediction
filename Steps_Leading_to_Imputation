@@ -83,4 +83,27 @@
     a) Use plink to generate frequency file 'POP.frq'.
         'plink --bfile POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01 --keep POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01.fam --freq --out POP'
     
-    b) HRC script.
+    b) Use '15_HRC-1000G-check.bim.pl' to run the pre-imputation check. With -p flag, use population region (African, American, European, East Asian, South Asian). AFR used here as an example.
+        'perl HRC-1000G-check.bim.pl -b POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01.bim -f POP.frq --1000g -p AFR'
+            This script generates a 'Run-plink.sh' used to update the files appropriately for imputation.
+         
+    c) Run 'Run-plink.sh'.
+        Outputs for each chromosome:
+            POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01-updated-chr1.bed
+            POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01-updated-chr1.bim
+            POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01-updated-chr1.fam
+            POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01-updated-chr1.log
+        Will output for chromosome 23 also, but you can just delete this. We all need 1-22.
+
+8)  a) Generate the '.vcf' files for the 22 chromosomes we need to impute.
+    'for i in {1..22}; do plink --bfile POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01-updated-chr${i} --recode vcf --out POPFinal.chr${i} --chr chr${i}; done'
+        Outputs for each chromosome:
+            POPFinal.chr1.vcf
+            POPFinal.chr1.log
+    
+    b) Sort and gzip the '.vcf' files.
+        'for i in {1..22}; do vcf-sort POPFinal.chr${i}.vcf | gzip -c > POP_chr${i}.vcf.gz; done'
+            Sorts and outputs for each chromosome:
+                POP_chr1.vcf.gz
+
+9) Submit these files for imputation via the Michigan Online Imputation Server.
