@@ -1,0 +1,26 @@
+#These steps are a continuation of 'Steps_Leading_to_Imputation', and uses files generated from those steps.
+# The merge steps (1 and 3) for merging 1000 genomes data with the imputation output was not needed for MKK as all samples were imputed.
+
+1) Divide the 1000 Genomes Project data by population, keeping the samples with expression data. Filter for SNPs with a MAF > 0.01.
+  'for i in {1..22}; do vcftools --gzvcf /home/wheelerlab1/Data/1000_genomes_phase3/ALL.chr${i}.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz --maf 0.01 --keep POP.list --recode --out POP_TGP_chr${i}; done'
+    Output for each chromosome:
+      POP_TGP_chr1.vcf
+    gzip these.
+     
+#####2) Obtain the imputation output files using the emailed encription key, and remove SNPs with R2 < 0.8. Make sure these files are gzipped.
+  'for i in {1..22}; do bcftools filter -i 'R2>0.8' ***POP_chr${i}.dose.vcf.gz*** > POP_chr${i}R20.8.dose.vcf; done'
+  gzip these.
+
+3) Merge the filtered imputation output with the 1000 Genomes files. Use '/home/wheelerlab1/Data/merge_vcf/merge.py'.
+  'for i in {1..22}; do python merge.py POP_TGP_chr${i}.vcf.gz POP_chr${i}R20.8.dose.vcf.gz POP_merge_chr${i}.vcf.gz; done'
+    Output for each chromosome:
+      POP_merge_chr1.vcf.gz
+
+4) QC on merged files using vcftools, keeping only SNPs with MAF > 0.01 and HWE P > 1e-06.
+  'for i in {1..22}; do vcftools --gzvcf POP_merge_chr${i}.vcf.gz --maf 0.01 --hwe 1e-06 --recode --out POP_filtered_chr${i}; done'
+    Output for each chromosome:
+      POP_filtered_chr1.recode.vcf
+     
+5) Run PEER. Can either do full script to generate plots for comparison, or simply generate the residuals file, which is needed for generating the MatrixeQTL files.
+  Use 
+    
