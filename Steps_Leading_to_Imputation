@@ -102,7 +102,7 @@
             POPFinal.chr1.log
     
     b) Sort and gzip the '.vcf' files.
-        'for i in {1..22}; do vcf-sort POPFinal.chr${i}.vcf | gzip -c > POP_chr${i}.vcf.gz; done'
+        'for i in {1..22}; do vcf-sort POPFinal.chr${i}.vcf | bgzip -c > POP_chr${i}.vcf.gz; done'
             Sorts and outputs for each chromosome:
                 POP_chr1.vcf.gz
 
