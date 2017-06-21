@@ -8,7 +8,7 @@
     gzip these.
 
 2) Obtain the imputation output files using the emailed encription key, and remove SNPs with R2 < 0.8. Make sure these files are gzipped.
-  'for i in {1..22}; do bcftools filter -i 'R2>0.8' chr${i}.dose.vcf.gz > POP_chr${i}R20.8.dose.vcf; done'
+  'for i in {1..22}; do bcftools filter -i 'R2>0.8' chr${i}.dose.vcf.gz > POP_chr${i}.R20.8.dose.vcf; done'
   gzip these.
 
 3) Merge the filtered imputation output with the 1000 Genomes files. Use '/home/wheelerlab1/Data/merge_vcf/merge.py'.
