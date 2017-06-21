@@ -30,7 +30,8 @@
   Output:
     'POPResiduals.sexcov.10.txt'
 
-6) Run MatrixeQTL. Can either perform a full analysis, or solely run to make the files you need for elastic net.
+6) Run MatrixeQTL. Can either perform a full analysis, or solely make the files you need for elastic net.
+  a)  Use '06_Matrix_eQTL_Expression_File_Conversion.R' to
 
 7) Run elastic net using script from Dr. Wheeler. Update it with the proper file paths.
    This is done three times, with the alpha values of 0, 0.5, and 1. 0.5 is shown as the alpha argument in the example.
