@@ -6,9 +6,9 @@
     Output for each chromosome:
       POP_TGP_chr1.vcf
     gzip these.
-     
-#####2) Obtain the imputation output files using the emailed encription key, and remove SNPs with R2 < 0.8. Make sure these files are gzipped.
-  'for i in {1..22}; do bcftools filter -i 'R2>0.8' ***POP_chr${i}.dose.vcf.gz*** > POP_chr${i}R20.8.dose.vcf; done'
+
+2) Obtain the imputation output files using the emailed encription key, and remove SNPs with R2 < 0.8. Make sure these files are gzipped.
+  'for i in {1..22}; do bcftools filter -i 'R2>0.8' chr${i}.dose.vcf.gz > POP_chr${i}R20.8.dose.vcf; done'
   gzip these.
 
 3) Merge the filtered imputation output with the 1000 Genomes files. Use '/home/wheelerlab1/Data/merge_vcf/merge.py'.
@@ -20,7 +20,21 @@
   'for i in {1..22}; do vcftools --gzvcf POP_merge_chr${i}.vcf.gz --maf 0.01 --hwe 1e-06 --recode --out POP_filtered_chr${i}; done'
     Output for each chromosome:
       POP_filtered_chr1.recode.vcf
-     
+
+***These files are needed for elastic net***
+
 5) Run PEER. Can either do full script to generate plots for comparison, or simply generate the residuals file, which is needed for generating the MatrixeQTL files.
   Use '05_PEER_Plots_With_Sex_Covariate.R'
+
+6) Run MatrixeQTL. Can either perform a full analysis, or solely run to make the files you need for elastic net.
+
+7) Run elastic net using script from Dr. Wheeler. Update it with the proper file paths.
+   This is done three times, with the alpha values of 0, 0.5, and 1. 0.5 is shown as the alpha argument in the example.
+   This is nice to have run in the background because it will take a day or two. 
+   Also maybe do chromosome 22 first to make sure everything runs properly. You can then modify the wrapper to be '{1..21}'.
+  'for i in {1..22}; do R --no-save < HapMap3_elasticNet.CV.r --args ${i} 0.5 POP > POP_chr${i}_alpha0.5.log; done'
+
+8) Generate '.db' files for PrediXcan.
+
+9) Run PrediXcan.
     
