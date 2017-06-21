@@ -21,9 +21,9 @@
     Output for each chromosome:
       POP_filtered_chr1.recode.vcf
       
-      ***These files I have saved in my /All_Populations directory under /QC_Post_Imputation_Dosage for each population.***
+***These finsihed QC files I have saved in my /All_Populations directory under /QC_Post_Imputation_Dosage for each population.***
 
-***These next files next files are needed for elastic net***
+***These next files are needed for elastic net.***
 
 5) Run PEER. Can either do full script to generate plots for comparison, or simply generate the residuals file, which is needed for generating the MatrixeQTL files.
   Use '05_PEER_Plots_With_Sex_Covariate.R'
@@ -31,7 +31,7 @@
     'POPResiduals.sexcov.10.txt'
 
 6) Run MatrixeQTL. Can either perform a full analysis, or solely make the files you need for elastic net.
-  a)  Use '06_Matrix_eQTL_Expression_File_Conversion.R' to
+  a)  Use '06_Matrix_eQTL_Expression_File_Conversion.R' to generate the Expression and Gene Location files.
 
 7) Run elastic net using script from Dr. Wheeler. Update it with the proper file paths.
    This is done three times, with the alpha values of 0, 0.5, and 1. 0.5 is shown as the alpha argument in the example.
