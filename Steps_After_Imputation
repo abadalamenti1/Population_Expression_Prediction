@@ -44,7 +44,8 @@
 
 8) Generate '.db' files for PrediXcan.
     a) Use 'concatenate.sh', modifying the file names to concatentate the elastic net files.
-    b) Use 'generate_sqlite_dbs.py' alongside the shell script 'POP_generate_db_files.sh'.
+        Make sure the appropriate files contain the terms '_merged_weights' and '_merged_expression'.
+    b) Use 'generate_sqlite_dbs.py' alongside the shell script 'POP_generate_db_files.sh', modifying the file names in the shell script.
         It may appear as though there is an error. It will still output the three files you need for PrediXcan.
 
 9) Run PrediXcan.
