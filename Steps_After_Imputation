@@ -20,15 +20,15 @@
   'for i in {1..22}; do vcftools --gzvcf POP_merge_chr${i}.vcf.gz --maf 0.01 --hwe 1e-06 --recode --out POP_filtered_chr${i}; done'
     Output for each chromosome:
       POP_filtered_chr1.recode.vcf
-      
-***These finsihed QC files I have saved in my /All_Populations directory under /QC_Post_Imputation_Dosage for each population.***
 
-***These next files are needed for elastic net.***
+***The QC merged files are in All_Populations/
 
 5) Run PEER. Can either do full script to generate plots for comparison, or simply generate the residuals file, which is needed for generating the MatrixeQTL files.
   Use '05_PEER_Plots_With_Sex_Covariate.R'
+  The residuals file is needed for MatrixeQTL
   Output:
     'POPResiduals.sexcov.10.txt'
+  ***The residual files for each pop are in All_Populations/
 
 6) Run MatrixeQTL. Can either perform a full analysis, or solely make the files you need for elastic net.
   a)  Use '06_Matrix_eQTL_Expression_File_Conversion.R' to generate the Expression and Gene Location files.
