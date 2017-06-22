@@ -47,6 +47,7 @@
         Make sure the appropriate files contain the terms '_merged_weights' and '_merged_expression'.
     b) Use '400_generate_sqlite_dbs.py' alongside the shell script '600_POP_generate_db_files.sh', modifying the file names in the shell script.
         It may appear as though there is an error. It will still output the three files you need for PrediXcan.
+    ***Database files for each individual population are in the ElasticNet section of each population in All_Populations.
 
 9) Run PrediXcan.
     
