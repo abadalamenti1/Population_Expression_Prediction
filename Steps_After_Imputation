@@ -28,6 +28,7 @@
   The residuals file is needed for MatrixeQTL
   Output:
     'POPResiduals.sexcov.10.txt'
+  Manually go back in using nano and add 'ID ' to the start of the first line.
   ***The residual files for each pop are in All_Populations/
 
 6) Run Matrix eQTL. Can either perform a full analysis, or solely make the files you need for elastic net.
