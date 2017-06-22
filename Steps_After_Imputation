@@ -43,6 +43,9 @@
   'for i in {1..22}; do R --no-save < HapMap3_elasticNet.CV.r --args ${i} 0.5 POP > POP_chr${i}_alpha0.5.log; done'
 
 8) Generate '.db' files for PrediXcan.
+    a) Use 'concatenate.sh', modifying the file names to concatentate the elastic net files.
+    b) Use 'generate_sqlite_dbs.py' alongside the shell script 'POP_generate_db_files.sh'.
+        It may appear as though there is an error. It will still output the three files you need for PrediXcan.
 
 9) Run PrediXcan.
     
