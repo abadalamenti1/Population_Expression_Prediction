@@ -30,8 +30,11 @@
     'POPResiduals.sexcov.10.txt'
   ***The residual files for each pop are in All_Populations/
 
-6) Run MatrixeQTL. Can either perform a full analysis, or solely make the files you need for elastic net.
+6) Run Matrix eQTL. Can either perform a full analysis, or solely make the files you need for elastic net.
   a)  Use '06_Matrix_eQTL_Expression_File_Conversion.R' to generate the Expression and Gene Location files.
+  b)  Use 'SNPs.py' to generate the SNPs and SNPs Location files.
+  ***These four sets of files are in All_Populations/
+  c)  Use '09_Matrix_eQTL_script.R' to run Matrix eQTL.
 
 7) Run elastic net using script from Dr. Wheeler. Update it with the proper file paths.
    This is done three times, with the alpha values of 0, 0.5, and 1. 0.5 is shown as the alpha argument in the example.
