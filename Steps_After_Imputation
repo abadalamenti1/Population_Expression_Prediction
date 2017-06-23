@@ -34,6 +34,11 @@
 6) Run Matrix eQTL. Can either perform a full analysis, or solely make the files you need for elastic net.
   a)  Use '06_Matrix_eQTL_Expression_File_Conversion.R' to generate the Expression and Gene Location files.
   b)  Use '07_SNPs.py' to generate the SNPs and SNPs Location files.
+        In order for this script to run properly for the MKK redo, I had to manually remove the commented (#) lines ahead of the one that looks like:
+          '#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  2561_NA21297'
+        From there, I had to then adjust the sample names manually as well, so instead of something like '2561_NA21297' it would read 'NA21297'.
+        I'm not entirely sure why this became a problem other than possible changed to the imputation server.
+        I'm sure these issues could be fixed by updating the python code.
   ***These four sets of files are in All_Populations/
   c)  Use '09_Matrix_eQTL_script.R' to run Matrix eQTL.
 
