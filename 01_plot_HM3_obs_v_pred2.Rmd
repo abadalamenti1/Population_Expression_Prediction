@@ -1,0 +1,64 @@
+---
+title: "01_plot_HM3_obs_v_pred"
+author: "Heather Wheeler"
+date: "`r Sys.time()`"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(data.table)
+"%&%" = function(a,b) paste(a,b,sep="")
+px.dir = "~/PrediXcan/output2/"
+obs.dir = "~/PrediXcan/Expression/"
+```
+
+```{r,warning=FALSE,fig.width=4,fig.height=4}
+pops <- c('CHB','GIH','JPT','LWK','MEX','MKK','YRI')
+dbs <- c('CHB','GIH','JPT','LWK','MEX','MKK','YRI')
+
+for(d in dbs){
+  for(pop in pops){
+    predexp1 <- data.frame(fread(px.dir %&% d %&% "_db_" %&% pop %&% "_predicted_0.5/predicted_expression.txt"))
+    rownames(predexp1) <- predexp1[,1]
+    obsexp <- data.frame(fread(obs.dir %&% pop %&% "_Expression.txt"))
+    rownames(obsexp)<-obsexp[,1]
+    tobsexp <- t(obsexp[,-1]) #transpose the observed exp matrix
+    
+    #get the same genes in obs & pred and sort by ID and gene
+    obs2 <- data.frame(tobsexp[,colnames(tobsexp) %in% colnames(predexp1)])
+    obs <- obs2[order(rownames(obs2)),order(colnames(obs2))]
+    
+    pred2 <- predexp1[,colnames(predexp1) %in% colnames(obs2)]
+    pred <- pred2[order(rownames(pred2)),order(colnames(pred2))]
+    
+    #convert to matrix and transpose
+    predexp <- as.matrix(pred)
+    obsexp <- as.matrix(obs)
+
+    popres <- matrix(NA,ncol=1,nrow=dim(obsexp)[2])
+
+    for(i in 1:dim(obsexp)[2]){
+      corres <- cor.test(predexp[,i] , obsexp[,i])
+      r <- signif(corres$estimate,3)
+      popres[i,] <- r
+    }
+    if(exists("allres") == FALSE){
+      allres = popres
+    }else{
+      allres<- cbind(allres,popres)
+    }
+  }
+
+  colnames(allres) <- pops
+  #print(ggpairs(allres,diag=list(continuous='blank'),title="Weights: GEUVADIS " %&% geu %&% ", HapMap3 pred v obs R"))
+  print(summary(allres))
+  gres <- gather(data.frame(allres),key=pop,value=R)
+  print(ggplot(gres,aes(x=pop,y=R,color=pop)) + geom_boxplot(outlier.size = 0.5) + theme_bw(15) + guides(color=FALSE) + ggtitle("Weights: " %&% d) + xlab("HapMap3 population")+ylab("Pearson's R (pred. v. obs.)"))
+  rownames(allres) <- colnames(obs)
+  write.table(allres,px.dir %&% "R_pred_v_obs_" %&% d %&% "_db.txt",quote=F)
+  rm("allres")
+}
+```
