@@ -11,7 +11,7 @@
   'for i in {1..22}; do bcftools filter -i 'R2>0.8' chr${i}.dose.vcf.gz > POP_chr${i}.R20.8.dose.vcf; done'
   gzip these.
 
-3) Merge the filtered imputation output with the 1000 Genomes files. Use '/home/wheelerlab1/Data/merge_vcf/merge.py'.
+3) Merge the filtered imputation output with the 1000 Genomes files. Use '09_merge.py'.
   'for i in {1..22}; do python merge.py POP_TGP_chr${i}.vcf.gz POP_chr${i}R20.8.dose.vcf.gz POP_merge_chr${i}.vcf.gz; done'
     Output for each chromosome:
       POP_merge_chr1.vcf.gz
@@ -24,7 +24,7 @@
 ***The QC merged files are in All_Populations/
 
 5) Run PEER. Can either do full script to generate plots for comparison, or simply generate the residuals file, which is needed for generating the MatrixeQTL files.
-  Use '05_PEER_Plots_With_Sex_Covariate.R'
+  Use '10_PEER_Plots_With_Sex_Covariate.R'
   The residuals file is needed for MatrixeQTL
   Output:
     'POPResiduals.sexcov.10.txt'
@@ -32,28 +32,47 @@
   ***The residual files for each pop are in All_Populations/
 
 6) Run Matrix eQTL. Can either perform a full analysis, or solely make the files you need for elastic net.
-  a)  Use '06_Matrix_eQTL_Expression_File_Conversion.R' to generate the Expression and Gene Location files.
-  b)  Use '07_SNPs.py' to generate the SNPs and SNPs Location files.
+  a)  Use '11_Matrix_eQTL_Expression_File_Conversion.R' to generate the Expression and Gene Location files.
+  b)  Use '12_SNPs.py' to generate the SNPs and SNPs Location files.
         In order for this script to run properly for the MKK redo, I had to manually remove the commented (##) lines ahead of the one that looks like:
           '#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  2561_NA21297'
         From there, I had to then adjust the sample names manually as well, so instead of something like '2561_NA21297' it would read 'NA21297'.
         I'm not entirely sure why this became a problem other than possible changes to the imputation server.
         I'm sure these issues could be fixed by updating the python code.
   ***These four sets of files are in All_Populations/
-  c)  Use '09_Matrix_eQTL_script.R' to run Matrix eQTL.
+  c)  Use '14_Matrix_eQTL_script.R' to run Matrix eQTL.
 
-7) Run elastic net using script from Dr. Wheeler. Update it with the proper file paths.
+7) Run elastic net. Update script it with the proper file paths.
+   Use '16_HapMap3_elasticNet.CV.r'.
    This is done three times, with the alpha values of 0, 0.5, and 1. 0.5 is shown as the alpha argument in the example.
    This is nice to have run in the background because it will take a day or two. 
    Also maybe do chromosome 22 first to make sure everything runs properly. You can then modify the wrapper to be '{1..21}'.
   'for i in {1..22}; do R --no-save < HapMap3_elasticNet.CV.r --args ${i} 0.5 POP > POP_chr${i}_alpha0.5.log; done'
 
 8) Generate '.db' files for PrediXcan.
-    a) Use '500_concatenate.sh', modifying the file names to concatentate the elastic net files.
+    a) Use '17_concatenate.sh', modifying the file names to concatentate the elastic net files.
         Make sure the appropriate files contain the terms '_merged_weights' and '_merged_expression'.
-    b) Use '400_generate_sqlite_dbs.py' alongside the shell script '600_POP_generate_db_files.sh', modifying the file names in the shell script.
+    b) Use '18_generate_sqlite_dbs.py' alongside the shell script '19_POP_generate_db_files.sh', modifying the file names in the shell script.
         It may appear as though there is an error. It will still output the three files ('merged_weights') you need for PrediXcan.
     ***Database files for each individual population are in the ElasticNet section of each population in All_Populations.
 
-9) Run PrediXcan.
+9) Generate dosage files for PrediXcan.
+  a)  Use '20_test_vcf2px.py".
+        'snpfile' is the SNPs_Location files for each chromosome from MatrixeQTL.
+        'chrfile' is the filtered merged file from step 4.
+        'outsamples' is an output file lisy of samples.
+        'outdosage' is the output dosage file.
+        Change the file names and paths accordingly.
+  b)  Update the newly generated dosage files so they are in the proper format.
+        Use '21_update.dosage.py'.
+        This renames the dosage files to 'POP_1.dosage2.txt'. Rename these back to 'POP_1.dosage.txt' and gzip them.
+  c) Update sample list.
+        Should be a two column repeated list.
+ 
+10) Run PrediXcan.
+      Use '22_poplist.txt' and '24_runpredixcan.sh' alongside '23_PrediXcan.py'.
+      Update scripts accordingly.
+
+11) Use various remaining scripts to generate plots.
+  
     
