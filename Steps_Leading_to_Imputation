@@ -37,7 +37,7 @@
 2) Use liftOver to update reference build from hg18 to hg19.
     a) Create the ".bed file" using R so it is in the proper format for use in liftOver.
         This file is not the actual 'hapmap3_r2_b36_fwd.consensus.qc.poly.bed' file, but is made. 
-        Use my '0100_update_bed_file_liftover.R' script in my Population_Expression_Prediction respository.
+        Use my '01_update_bed_file_liftover.R' script in my Population_Expression_Prediction respository.
             Example Output File:    chr1    743267  743268  rs3115860
                                     chr1    766408  766409  rs12124819
                                     chr1    773885  773886  rs17160939
@@ -55,22 +55,22 @@
         ***Again, note how many people pass filters and QC. It may not be the same number as the people in 'POP.list'.
  
  4) Update .bim file to remove unlifted SNPs and update positions after liftOver.
-        a) Use '0200_List_of_Unlifted.R' to create a list of unlifted SNPs, 'Unlifted_SNPs.txt'.
+        a) Use '02_List_of_Unlifted.R' to create a list of unlifted SNPs, 'Unlifted_SNPs.txt'.
         
         b) Use with --exclude tag (Plink)
             'plink --bfile POP_hapmap3_r2_b36_fwd.consensus.qc.poly --exclude Unlifted_SNPs.txt --make-bed --out POP_Removed_Unlifted'
             Now have POP_Removed_Unlifted.bed, POP_Removed_Unlifted.bim, POP_Removed_Unlifted.fam.
         
-        c) Use '0300_Update_Position.R' to update POP_Removed_Unlifted.bim with the new positions from liftOver.
+        c) Use '03_Update_Position.R' to update POP_Removed_Unlifted.bim with the new positions from liftOver.
             Output from this script is 'POP_Removed_Unlifted_New_Position.bim'.
             It is helpful to then re-name 'POP_Removed_Unlifted.bed', and 'POP_Removed_Unlifted.fam' to 'POP_Removed_Unlifted_New_Position' as well.
 
 5) Figure out which samples were sequenced via 1000 Genomes Project and remove them.
-    a) Use '01_EXP_vs_TGP_script.R' to figure out which samples have been sequenced through TGP and which need to be imputed.
+    a) Use '04_EXP_vs_TGP_script.R' to figure out which samples have been sequenced through TGP and which need to be imputed.
         Output files are 'POPfound.txt', or samples that were sequenced, and 'POPimpute.txt', or samples that need to be imputed.
         ***No samples from MKK were sequenced and all had to be imputed. This is the only population that had to be entirely imputed.
         
-    b) Use '04_Create_FID-IID_List_of_Sequenced_Samples.R' to create a list of those that were sequenced organized by FID and IID.
+    b) Use '07_Create_FID-IID_List_of_Sequenced_Samples.R' to create a list of those that were sequenced organized by FID and IID.
         Output file is 'POP_Sequenced.txt'.
     
     c) Remove list of sequenced samples using Plink.
@@ -84,7 +84,7 @@
     a) Use plink to generate frequency file 'POP.frq'.
         'plink --bfile POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01 --keep POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01.fam --freq --out POP'
     
-    b) Use '15_HRC-1000G-check.bim.pl' to run the pre-imputation check. With -p flag, use population region (African, American, European, East Asian, South Asian). AFR used here as an example.
+    b) Use '08_HRC-1000G-check.bim.pl' to run the pre-imputation check. With -p flag, use population region (African, American, European, East Asian, South Asian). AFR used here as an example.
         'perl HRC-1000G-check.bim.pl -b POP_Removed_Unlifted_New_Position_Removed_Sequenced.geno0.01.bim -f POP.frq --1000g -p AFR'
             This script generates a 'Run-plink.sh' used to update the files appropriately for imputation.
          
