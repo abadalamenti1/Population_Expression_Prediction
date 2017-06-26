@@ -52,6 +52,8 @@
 8) Generate '.db' files for PrediXcan.
     a) Use '17_concatenate.sh', modifying the file names to concatentate the elastic net files.
         Make sure the appropriate files contain the terms '_merged_weights' and '_merged_expression'.
+          Modify the 'HapMap3_POP_exp_10-foldCV_elasticNet_alpha1_all_chr1-22.txt' looking files to include the term '_merged_expression'.
+          Modify the 'HapMap3_POP_elasticNet_alpha1_weights_all_chr1-22.txt' looking files to include the term '_merged_weights'.
     b) Use '18_generate_sqlite_dbs.py' alongside the shell script '19_POP_generate_db_files.sh', modifying the file names in the shell script.
         It may appear as though there is an error. It will still output the three files ('merged_weights') you need for PrediXcan.
     ***Database files for each individual population are in the ElasticNet section of each population in All_Populations.
