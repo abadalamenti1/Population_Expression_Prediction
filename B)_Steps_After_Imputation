@@ -68,7 +68,12 @@
         Use '21_update.dosage.py'.
         This renames the dosage files to 'POP_1.dosage2.txt'. Rename these back to 'POP_1.dosage.txt' and gzip them.
   c) Update sample list.
-        Should be a two column repeated list.
+        Should be a two column repeated list:
+          'NA19027 NA19027
+          NA19028 NA19028
+          NA19031 NA19031
+          NA19035 NA19035
+          NA19036 NA19036'
  
 10) Run PrediXcan.
       Use '22_poplist.txt' and '24_runpredixcan.sh' alongside '23_PrediXcan.py'.
