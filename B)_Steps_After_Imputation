@@ -74,6 +74,7 @@
           NA19031 NA19031
           NA19035 NA19035
           NA19036 NA19036'
+        Rename to be samples_POP.txt
  
 10) Run PrediXcan.
       Use '22_poplist.txt' and '24_runpredixcan.sh' alongside '23_PrediXcan.py'.
